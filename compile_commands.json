@@ -1,0 +1,8 @@
+[
+	{
+		"directory": "/home/crest/kassiber",
+		"command": "clang19 -O0 -g -pipe -DRACONIC   -fPIE -g -gz=zlib  -std=c17 -Wno-format-zero-length -nobuiltininc -idirafter /usr/local/llvm19/lib/clang/19/include -fstack-protector-strong    -Qunused-arguments    -c main.c -o /home/crest/kassiber/main.o",
+		"file": "/home/crest/kassiber/main.c",
+		"output": "/home/crest/kassiber/main.o"
+	}
+]
