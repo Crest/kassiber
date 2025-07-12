@@ -1,0 +1,76 @@
+.Dd Jul 12, 2025
+.Dt KASSIBER 1
+.Os
+.Sh NAME
+.Nm kassiber
+.Nd Inject an executable from the FreeBSD host into a jail
+.\"
+.\"
+.\"
+.Sh SYNOPSIS
+.Nm
+.Op Fl h
+.Op Fl a
+.Op Fl A
+.Op Fl n
+.Op Fl r Ar <rtld>
+.Op Fl p Ar <path>
+.Op Fl l Ar <lib>
+.Op Fl j Ar <jail>
+.Op Fl c Ar <chroot>
+.Ar <cmd>
+.Op Ar <arg> ...
+.\"
+.\"
+.\"
+.Sh DESCRIPTION
+The
+.Nm
+command opens the runtime loader and an executable,
+loads the required libraries, attaches itself to a jail
+and/or chroot directory.
+
+The following option are available:
+.Bl -tag -width flag
+.It Fl h
+Print the usage message and exit.
+.It Fl a
+Infer the required libraries using the runtime loader's tracing support.
+Put the inferred libaries before manually specified libraries.
+.It Fl A
+Infer the required libraries using the runtime loader's tracing support.
+Put the inferred libaries after manually specified libraries.
+.It Fl n
+Don't infer the required libraries. Only manually specified libraries will be loaded.
+.It Fl r Ar <rtld>
+Override the the default runtime loader path.
+.It Fl l Ar <lib>
+Manually specify a library to preload. Can be specified more than once.
+.It Fl j Ar <jail>
+Set the jail to attach to.
+The command attaches to the jail before it chroots itself.
+.It Fl c Ar <chroot>
+Set the chroot directory path.
+The command chroots itself after it attached to the jail.
+.El
+.\"
+.\"
+.\"
+.Sh EXIT STATUS
+The
+.Nm
+command exits with EX_NOINPUT, EX_OSERR, or EX_CONFIG on errors
+otherwise it replaces itself with the invoked executable.
+.\"
+.\"
+.\"
+.Sh SEE ALSO
+.Xr rtld 1 ,
+.Xr jexec 8 ,
+.Xr chroot 8
+.\"
+.\"
+.\"
+.Sh AUTHORS
+This manual page was written by
+.An Jan Bramkamp Aq crest+kassiber@rlwinm.de .
