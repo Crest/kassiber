@@ -16,7 +16,7 @@ SHAREDIR?=              $(PREFIX)/share
 
 # Pick the newest C standards supported by the FreeBSD 14.x system compiler (15.0 should support C23).
 CSTD=			c17
-CC=			clang19
+CC=			cc
 
 PROG=			kassiber
 
