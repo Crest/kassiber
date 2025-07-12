@@ -485,6 +485,9 @@ open_required_libs(struct int_vec *_Nullable libs, const struct args args[const 
 	ssize_t length = 0;
 	while ((length = getline(&path, &capacity, lines)) > 0) {
 		path[length - 1] = '\0';
+		if (path[0] == '\t') {
+			continue;
+		}
 		const int fd = openat_retry(AT_FDCWD, path, O_RDONLY | O_VERIFY, 0444);
 		if (fd < 0) {
 			err(EX_NOINPUT, "Failed to open library \"%s\"", path);
