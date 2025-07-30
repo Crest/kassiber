@@ -446,7 +446,7 @@ open_required_libs(struct int_vec *_Nullable libs, const struct args args[const 
 		args->rtld,
 		"-o", "TRACE_LOADED_OBJECTS=yes",
 		"-o", "TRACE_LOADED_OBJECTS_FMT1=%p\\n",
-		"-f", exec_num,
+		"-f", exec_num, "--",
 		args->argv[args->optind],
 		NULL
 	};
