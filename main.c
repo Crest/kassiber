@@ -298,16 +298,11 @@ free_paths(const struct paths *_Nonnull const paths[const static 1])
 static int
 openat_retry(const int dfd, const char *const path, int flags, const mode_t mode)
 {
-	const int fd = openat(dfd, path, flags, mode);
-	if (fd >= 0 || errno != EINTR) {
-		return fd;
-	} else {
-#ifdef __powerpc__
-		return openat_retry(dfd, path, flags, mode);
-#else
-		__attribute__((musttail)) return openat_retry(dfd, path, flags, mode);
-#endif
-	}
+	int fd;
+	do {
+		fd = openat(dfd, path, flags, mode);
+	} while (fd < 0 && errno == EINTR);
+	return fd;
 }
 
 static inline struct args
